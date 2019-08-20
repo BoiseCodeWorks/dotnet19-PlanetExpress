@@ -63,7 +63,16 @@ namespace PlanetExpress
       switch (Console.ReadLine())
       {
         case "1":
-          CurrentLocation = CurrentLocation.ListNeighbors();
+          CurrentLocation.ListNeighbors();
+          if (CurrentLocation is Moon)
+          {
+            CurrentLocation = CurrentLocation.TravelToNeighbor();
+          }
+          else
+          {
+            Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
+            CurrentLocation = currentPlanet.DisplayOptions();
+          }
           break;
         case "2":
           SpaceTraveling = false;

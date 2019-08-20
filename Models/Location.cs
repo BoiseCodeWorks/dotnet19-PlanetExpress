@@ -18,7 +18,7 @@ namespace PlanetExpress.Models
       }
     }
 
-    public Location ListNeighbors()
+    public void ListNeighbors()
     {
       Console.Clear();
       System.Console.WriteLine($"From {Name} you can travel to:");
@@ -26,13 +26,16 @@ namespace PlanetExpress.Models
       {
         System.Console.WriteLine($"{kvp.Key}");
       }
-      return TravelToNeighbor();
     }
 
-    public Location TravelToNeighbor()
+    public Location TravelToNeighbor(string locationName = "")
     {
-      System.Console.WriteLine("\n\nPlease enter the neighbor you'd like to travel to or else type 'menu' to return to main menu.");
-      string destination = Console.ReadLine();
+      string destination = locationName;
+      if (locationName == "")
+      {
+        System.Console.WriteLine("\n\nPlease enter the neighbor you'd like to travel to or else type 'menu' to return to main menu.");
+        destination = Console.ReadLine();
+      }
       if (destination == "menu")
       {
         return this;
