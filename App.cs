@@ -1,10 +1,12 @@
 using System;
+using PlanetExpress.Interfaces;
 using PlanetExpress.Models;
 
 namespace PlanetExpress
 {
   public class App
   {
+    public IGalaxy CurrentGalaxy { get; set; }
     public Location CurrentLocation { get; set; }
     public bool SpaceTraveling { get; set; }
 
@@ -13,7 +15,7 @@ namespace PlanetExpress
       //NOTE instantiating raw data for our application
       Planet mercury = new Planet("Mercury", 0.38);
       Planet venus = new Planet("Venus", 0.94);
-      Planet earth = new Planet("Earth", 1);
+      Planet earth = new Planet("Earth", 1, true);
       Planet mars = new Planet("Mars", 0.98);
       Planet jupiter = new Planet("Jupiter", 23.7);
       Planet saturn = new Planet("Saturn", 21);
@@ -59,6 +61,8 @@ namespace PlanetExpress
 
     public void DisplayMenu()
     {
+      //TODO modify this menu to include options for travelling between galaxies and for travelling between locations within the CurrentGalaxy
+
       System.Console.WriteLine("1) List neighbors\n2) Quit");
       switch (Console.ReadLine())
       {

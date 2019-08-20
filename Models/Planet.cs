@@ -5,6 +5,7 @@ namespace PlanetExpress.Models
 {
   public class Planet : Location
   {
+    public bool InterGalacticLaunchSite { get; set; } //NOTE You may only travel to other Galaxies if your App's CurrentLocation is an InterGalacticLaunchSite
     public Dictionary<string, string> GuestBook { get; set; }
 
     public Location DisplayOptions()
@@ -47,8 +48,13 @@ namespace PlanetExpress.Models
       GuestBook.Add(name, message);
     }
 
-    public Planet(string name, double diamtr) : base(name, diamtr)
+    public void ExploreGuestBook()
     {
+      //TODO list the names and messages of InterGalactic Travellers before you
+    }
+    public Planet(string name, double diamtr, bool launchSite = false) : base(name, diamtr)
+    {
+      InterGalacticLaunchSite = launchSite;
       GuestBook = new Dictionary<string, string>();
     }
   }
