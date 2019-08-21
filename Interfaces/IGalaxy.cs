@@ -8,7 +8,7 @@ namespace PlanetExpress.Interfaces
         string Name { get; set; } //NOTE eg., "Milky Way"
         string Shape { get; set; } //NOTE eg., "Elliptical", "Spiral"
         Dictionary<string, IGalaxy> Neighbors { get; set; } //NOTE eg., "Andromeda"
-        Location InterGalacticLaunchPlanet { get; set; } //NOTE eg., "Earth"
+        Planet InterGalacticLaunchPlanet { get; set; } //NOTE eg., "Earth"
 
         void ListNeighbors();
         void AddNeighbor(IGalaxy neighbor);

@@ -24,7 +24,7 @@ namespace PlanetExpress.Models
       System.Console.WriteLine($"From {Name} you can travel to:");
       foreach (KeyValuePair<string, Location> kvp in Neighbors)
       {
-        System.Console.WriteLine($"{kvp.Key}");
+        System.Console.WriteLine(kvp.Key);
       }
     }
 
