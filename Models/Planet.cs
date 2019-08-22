@@ -57,5 +57,7 @@ namespace PlanetExpress.Models
       InterGalacticLaunchSite = launchSite;
       GuestBook = new Dictionary<string, string>();
     }
+
+
   }
 }

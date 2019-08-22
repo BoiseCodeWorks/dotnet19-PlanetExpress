@@ -31,9 +31,20 @@ namespace PlanetExpress.Models
       }
     }
 
-    public IGalaxy TravelToNeighbor(string destination = "")
+    public IGalaxy TravelToNeighbor()
     {
+      Console.WriteLine("What Galaxy do you want to travel to?");
+      string userGal = Console.ReadLine();
+      if (Neighbors.ContainsKey(userGal))
+      {
+        return Neighbors[userGal];
+      }
+      else
+      {
+        Console.WriteLine("Not a real Galaxy");
 
+      }
+      return this;
     }
 
     public Galaxy(string name, string shape, Planet launchPlanet)

@@ -12,7 +12,7 @@ namespace PlanetExpress.Interfaces
 
     void ListNeighbors();
     void AddNeighbor(IGalaxy neighbor, bool autoAdd = true);
-    IGalaxy TravelToNeighbor(string destination = "");
+    IGalaxy TravelToNeighbor();
 
     // NOTE methods above are how we implemented the logic for a linked list between locations.
     // You may either follow or modify this interface to fit the purposes of your InterGalatic Application  

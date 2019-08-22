@@ -61,6 +61,7 @@ namespace PlanetExpress
 
 
       CurrentLocation = earth;
+      CurrentGalaxy = milkyway;
       SpaceTraveling = true;
     }
 
@@ -83,67 +84,54 @@ namespace PlanetExpress
       //  else menu should include location travel and quit
       //else menu should include location travel and quit
 
+      string menuOptions = "(P) to list neighbor planetary objects. (Q) to quit.";
+      bool InterGalacticTravel = false;
+
       if (CurrentLocation is Planet)
       {
         Planet littlePlanet = (Planet)CurrentLocation;
         if (littlePlanet.InterGalacticLaunchSite)
         {
-          System.Console.WriteLine("1) List neighbors\n2)Travel to another Galaxy \n3) Quit");
-          switch (Console.ReadLine())
-          {
-            case "1":
-              CurrentLocation.ListNeighbors();
-              if (CurrentLocation is Moon)
-              {
-                CurrentLocation = CurrentLocation.TravelToNeighbor();
-              }
-              else
-              {
-                Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
-                CurrentLocation = currentPlanet.DisplayOptions();
-              }
-              break;
-            case "2":
-              CurrentGalaxy.ListNeighbors();
-              CurrentGalaxy.TravelToNeighbor();
-              break;
-            case "3":
-              SpaceTraveling = false;
-              break;
-            default:
-              System.Console.WriteLine("Houston we have a problem.\nSimply type 1 or 2.");
-              break;
-          }
-        }
-        else
-        {
-          System.Console.WriteLine("1) List neighbors\n2) Quit");
-          switch (Console.ReadLine())
-          {
-            case "1":
-              CurrentLocation.ListNeighbors();
-              if (CurrentLocation is Moon)
-              {
-                CurrentLocation = CurrentLocation.TravelToNeighbor();
-              }
-              else
-              {
-                Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
-                CurrentLocation = currentPlanet.DisplayOptions();
-              }
-              break;
-            case "2":
-              SpaceTraveling = false;
-              break;
-            default:
-              System.Console.WriteLine("Houston we have a problem.\nSimply type 1 or 2.");
-              break;
-          }
+          menuOptions = "(G) to list neighbor galaxies. " + menuOptions;
+          InterGalacticTravel = true;
         }
       }
 
-
-
+      System.Console.WriteLine(menuOptions);
+      switch (Console.ReadLine())
+      {
+        case "G":
+        case "g":
+          if (!InterGalacticTravel)
+          {
+            System.Console.WriteLine($"Must be at {CurrentGalaxy.InterGalacticLaunchPlanet.Name} for InterGalactic Travel.");
+            break;
+          }
+          CurrentGalaxy.ListNeighbors();
+          CurrentGalaxy = CurrentGalaxy.TravelToNeighbor();
+          CurrentLocation = CurrentGalaxy.InterGalacticLaunchPlanet;
+          break;
+        case "P":
+        case "p":
+          CurrentLocation.ListNeighbors();
+          if (CurrentLocation is Moon)
+          {
+            CurrentLocation = CurrentLocation.TravelToNeighbor();
+          }
+          else
+          {
+            Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
+            CurrentLocation = currentPlanet.DisplayOptions();
+          }
+          break;
+        case "Q":
+        case "q":
+          SpaceTraveling = false;
+          break;
+        default:
+          System.Console.WriteLine("Houston we have a problem.");
+          break;
+      }
     }
   }
 }
