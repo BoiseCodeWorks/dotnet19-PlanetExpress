@@ -10,6 +10,8 @@ namespace PlanetExpress
     public Location CurrentLocation { get; set; }
     public bool SpaceTraveling { get; set; }
 
+    public int RocketFuel { get; set; } = 0;
+
     public void Setup()
     {
       //NOTE instantiating raw data for our application

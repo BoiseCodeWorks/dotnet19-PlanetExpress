@@ -12,7 +12,7 @@ namespace PlanetExpress.Models
     {
       Location newDestination = this;
 
-      System.Console.WriteLine("Enter 'sign' to sign the GuestBook or else enter 'go <location>' to go to that location.");
+      System.Console.WriteLine("Enter 'sign' to sign the GuestBook or 'fuel' to collect fuel.  Otherwise enter 'go <location>' to go to that location.");
 
       // NOTE helpful for final project
       string userInput = Console.ReadLine();
@@ -28,6 +28,16 @@ namespace PlanetExpress.Models
         case "sign":
           SignGuestBook();
           break;
+        case "fuel":
+          if (CheckFuel())
+          {
+            GetFuel();
+          }
+          else
+          {
+            Console.WriteLine("Sorry your out of luck!!");
+          }
+          break;
         case "go":
           newDestination = this.TravelToNeighbor(option);
           break;
@@ -37,6 +47,12 @@ namespace PlanetExpress.Models
       }
       return newDestination;
     }
+
+    public bool CheckFuel()
+    {
+      return Fuel > 0;
+    }
+
 
     public void SignGuestBook()
     {

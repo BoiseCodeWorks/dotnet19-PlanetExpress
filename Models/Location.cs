@@ -9,6 +9,8 @@ namespace PlanetExpress.Models
     public double EarthDiameters { get; set; }
     public Dictionary<string, Location> Neighbors { get; set; } //NOTE not in and of itself the linked list but will be utilized to implement a linked list
 
+    public int Fuel { get; set; }
+
     public void AddNeighbor(Location neighborToAdd, bool autoAdd = true)
     {
       Neighbors.Add(neighborToAdd.Name, neighborToAdd);
@@ -52,6 +54,7 @@ namespace PlanetExpress.Models
       Name = name;
       EarthDiameters = diamtr;
       Neighbors = new Dictionary<string, Location>();
+      Fuel = new Random().Next(20);
     }
   }
 }
