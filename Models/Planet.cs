@@ -8,7 +8,7 @@ namespace PlanetExpress.Models
     public bool InterGalacticLaunchSite { get; set; } //NOTE You may only travel to other Galaxies if your App's CurrentLocation is an InterGalacticLaunchSite
     public Dictionary<string, string> GuestBook { get; set; }
 
-    public Location DisplayOptions()
+    public Location DisplayOptions(App rocketship)
     {
       Location newDestination = this;
 
@@ -31,7 +31,7 @@ namespace PlanetExpress.Models
         case "fuel":
           if (CheckFuel())
           {
-            GetFuel();
+            GetFuel(rocketship);
           }
           else
           {
@@ -51,6 +51,13 @@ namespace PlanetExpress.Models
     public bool CheckFuel()
     {
       return Fuel > 0;
+    }
+    public void GetFuel(App rocketship)
+    {
+      rocketship.RocketFuel += Fuel;
+      Console.WriteLine($"You gained {Fuel} fuel. your current fuel  supply is {rocketship.RocketFuel}");
+      Fuel = 0;
+
     }
 
 

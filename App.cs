@@ -123,7 +123,7 @@ namespace PlanetExpress
           else
           {
             Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
-            CurrentLocation = currentPlanet.DisplayOptions();
+            CurrentLocation = currentPlanet.DisplayOptions(this);
           }
           break;
         case "Q":
