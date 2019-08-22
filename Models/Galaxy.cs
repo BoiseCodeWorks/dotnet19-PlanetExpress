@@ -24,12 +24,16 @@ namespace PlanetExpress.Models
     public void ListNeighbors()
     {
       Console.Clear();
-
+      System.Console.WriteLine($"From {Name} you can travel to: ");
+      foreach (KeyValuePair<string, IGalaxy> kvp in Neighbors)
+      {
+        Console.WriteLine($"{kvp.Key}'s Launch Planet: {kvp.Value.InterGalacticLaunchPlanet.Name}");
+      }
     }
 
     public IGalaxy TravelToNeighbor(string destination = "")
     {
-      return null;
+
     }
 
     public Galaxy(string name, string shape, Planet launchPlanet)
