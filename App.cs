@@ -22,11 +22,19 @@ namespace PlanetExpress
       Planet uranus = new Planet("Uranus", 18);
       Planet neptune = new Planet("Neptune", 17.5);
       Planet pluto = new Planet("Pluto", 0.17);
+      Planet persephone = new Planet("Persephone", 15, true);
+      Planet zeus = new Planet("Zeus", 30);
+      Planet polaris = new Planet("Polaris", 2, true);
+
+      Galaxy andromeda = new Galaxy("Andromeda", "elliptical", persephone);
+      Galaxy milkyway = new Galaxy("Milkyway", "spiral", earth);
+      Galaxy serenity = new Galaxy("Serenity", "disc", polaris);
 
       Moon moon = new Moon("Moon", 0.28, true);
       Moon luna = new Moon("Luna", 0.28);
       Moon bloodRed = new Moon("BloodRed", 0.28);
       Moon dark = new Moon("Sattellite", 0.28);
+      Moon charon = new Moon("Charon", 0.16);
 
       // NOTE adding neighbors to the objects
       mercury.AddNeighbor(venus);
@@ -41,10 +49,15 @@ namespace PlanetExpress
       earth.AddNeighbor(moon);
 
       jupiter.AddNeighbor(luna);
-      jupiter.AddNeighbor(bloodRed);
       jupiter.AddNeighbor(dark);
 
       pluto.AddNeighbor(bloodRed);
+
+      persephone.AddNeighbor(zeus);
+      polaris.AddNeighbor(charon);
+
+      milkyway.AddNeighbor(andromeda);
+      andromeda.AddNeighbor(serenity);
 
       CurrentLocation = earth;
       SpaceTraveling = true;
