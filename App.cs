@@ -77,28 +77,73 @@ namespace PlanetExpress
     {
       //TODO modify this menu to include options for travelling between galaxies and for travelling between locations within the CurrentGalaxy
 
-      System.Console.WriteLine("1) List neighbors\n2) Quit");
-      switch (Console.ReadLine())
+      //see if CurrentLocation is of data type Planet
+      //  if it is see if it is the InterGalacticLaunchPlanet
+      //    if it is then menu should include options for galaxy travel, location travel, and quit
+      //  else menu should include location travel and quit
+      //else menu should include location travel and quit
+
+      if (CurrentLocation is Planet)
       {
-        case "1":
-          CurrentLocation.ListNeighbors();
-          if (CurrentLocation is Moon)
+        Planet littlePlanet = (Planet)CurrentLocation;
+        if (littlePlanet.InterGalacticLaunchSite)
+        {
+          System.Console.WriteLine("1) List neighbors\n2)Travel to another Galaxy \n3) Quit");
+          switch (Console.ReadLine())
           {
-            CurrentLocation = CurrentLocation.TravelToNeighbor();
+            case "1":
+              CurrentLocation.ListNeighbors();
+              if (CurrentLocation is Moon)
+              {
+                CurrentLocation = CurrentLocation.TravelToNeighbor();
+              }
+              else
+              {
+                Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
+                CurrentLocation = currentPlanet.DisplayOptions();
+              }
+              break;
+            case "2":
+              CurrentGalaxy.ListNeighbors();
+              CurrentGalaxy.TravelToNeighbor();
+              break;
+            case "3":
+              SpaceTraveling = false;
+              break;
+            default:
+              System.Console.WriteLine("Houston we have a problem.\nSimply type 1 or 2.");
+              break;
           }
-          else
+        }
+        else
+        {
+          System.Console.WriteLine("1) List neighbors\n2) Quit");
+          switch (Console.ReadLine())
           {
-            Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
-            CurrentLocation = currentPlanet.DisplayOptions();
+            case "1":
+              CurrentLocation.ListNeighbors();
+              if (CurrentLocation is Moon)
+              {
+                CurrentLocation = CurrentLocation.TravelToNeighbor();
+              }
+              else
+              {
+                Planet currentPlanet = (Planet)CurrentLocation; //NOTE the right side logic is type casting to change from data type Location to Planet so that we can access the method DisplayOptions.
+                CurrentLocation = currentPlanet.DisplayOptions();
+              }
+              break;
+            case "2":
+              SpaceTraveling = false;
+              break;
+            default:
+              System.Console.WriteLine("Houston we have a problem.\nSimply type 1 or 2.");
+              break;
           }
-          break;
-        case "2":
-          SpaceTraveling = false;
-          break;
-        default:
-          System.Console.WriteLine("Houston we have a problem.\nSimply type 1 or 2.");
-          break;
+        }
       }
+
+
+
     }
   }
 }
