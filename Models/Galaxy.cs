@@ -1,4 +1,5 @@
 // TODO build this model and implement the IGalaxy interface
+using System;
 using System.Collections.Generic;
 using PlanetExpress.Interfaces;
 
@@ -11,13 +12,18 @@ namespace PlanetExpress.Models
     public Dictionary<string, IGalaxy> Neighbors { get; set; }
     public Planet InterGalacticLaunchPlanet { get; set; }
 
-    public void AddNeighbor(IGalaxy neighbor)
+    public void AddNeighbor(IGalaxy neighbor, bool autoAdd = true)
     {
-
+      Neighbors.Add(neighbor.Name, neighbor);
+      if (autoAdd)
+      {
+        neighbor.AddNeighbor(this, false);
+      }
     }
 
     public void ListNeighbors()
     {
+      Console.Clear();
 
     }
 

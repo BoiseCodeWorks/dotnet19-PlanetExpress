@@ -59,6 +59,7 @@ namespace PlanetExpress
       milkyway.AddNeighbor(andromeda);
       andromeda.AddNeighbor(serenity);
 
+
       CurrentLocation = earth;
       SpaceTraveling = true;
     }
