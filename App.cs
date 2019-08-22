@@ -110,8 +110,21 @@ namespace PlanetExpress
             break;
           }
           CurrentGalaxy.ListNeighbors();
-          CurrentGalaxy = CurrentGalaxy.TravelToNeighbor();
-          CurrentLocation = CurrentGalaxy.InterGalacticLaunchPlanet;
+          if (CheckFuel())
+          {
+            string galaxyName = CurrentGalaxy.Name;
+            CurrentGalaxy = CurrentGalaxy.TravelToNeighbor();
+            CurrentLocation = CurrentGalaxy.InterGalacticLaunchPlanet;
+            if (galaxyName != CurrentGalaxy.Name)
+            {
+              RocketFuel -= 20;
+            }
+          }
+          else
+          {
+            System.Console.WriteLine("Search within yourself");
+          }
+
           break;
         case "P":
         case "p":
@@ -134,6 +147,11 @@ namespace PlanetExpress
           System.Console.WriteLine("Houston we have a problem.");
           break;
       }
+    }
+
+    public bool CheckFuel()
+    {
+      return RocketFuel >= 20;
     }
   }
 }
